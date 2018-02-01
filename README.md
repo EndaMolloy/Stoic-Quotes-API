@@ -1,0 +1,1 @@
+# chrome-stoic-quotes
