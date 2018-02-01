@@ -53,9 +53,19 @@ body {
   font-size: 1.1em;
   color: white;
   border-left: solid 3px white;
+  -webkit-transition: all 1.6s;
+ transition: all 1.6s;
 }
 
-#horizontal-bar {
+#author.move {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 20px rgba(0,0,0,0.3);
+  -webkit-transform: translate(0, 40px);
+  transform: translate(0, 40px);
+}
+
+
+/*#horizontal-bar {
   border-bottom: solid 3px white;
   width: 120px;
   position: absolute;
@@ -64,7 +74,7 @@ body {
   right:0;
   margin-left:auto;
   margin-right:auto;
-}
+}*/
 
 
 
