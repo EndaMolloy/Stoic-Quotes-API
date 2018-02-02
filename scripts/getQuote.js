@@ -1,7 +1,10 @@
 (function(){
 
+  // const dayNum = getDayNumber();
+  const dayNum = 2;
+
   if(!localStorage.quote){
-    getAjax('http://localhost:5000/getQuote',(serverQuote)=>{
+    getAjax(`http://localhost:5000/quotes/${dayNum}`,(serverQuote)=>{
       localStorage.quote = serverQuote.quote;
       localStorage.author = serverQuote.author;
       document.getElementById('quote').textContent = '“ '+serverQuote.quote+' ”';
@@ -19,18 +22,29 @@
   function getAjax(url, callback) {
     const xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = ()=> {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            try {
-                callback(JSON.parse(xmlhttp.responseText));
-            } catch(err) {
-                console.log(err.message + " in " + xmlhttp.responseText);
-                return;
-            }
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        try {
+            callback(JSON.parse(xmlhttp.responseText));
+        } catch(err) {
+            console.log(err.message + " in " + xmlhttp.responseText);
+            return;
         }
+      }
     };
 
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
   };
+
+
+  //Returns the day number 1-366, UTC format so it accounts for daylightsaving hours
+  function getDayNumber(){
+    const now = Date.now();
+    const year =  new Date().getUTCFullYear();
+    const year_start = Date.UTC(year, 0, 1);
+    const day_length_in_ms = 1000*60*60*24;
+    return Math.floor((now - year_start)/day_length_in_ms);
+
+  }
 
 })();

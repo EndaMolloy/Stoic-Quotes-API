@@ -20,10 +20,13 @@ app.get('/',(req,res)=> {
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.get('/getQuote', (req,res)=> {
-  Quote.find({},(err,quotes)=>{
-    res.send(quotes[0]);
-  })
+app.get('/quotes/:id', (req,res)=> {
+  const dayNum = req.params.id;
+
+  Quote.find({},(err,quotes)=> {
+    res.send(quotes[dayNum]);
+  });
+
 })
 
 
