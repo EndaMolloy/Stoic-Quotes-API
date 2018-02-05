@@ -1,16 +1,18 @@
 (function(){
 
-  // const dayNum = getDayNumber();
-  const dayNum = 2;
+  //const dayNum = getDayNumber();
+  const dayNum = 36;
 
-  if(!localStorage.quote){
+  if(!localStorage.dayNum || dayNum - localStorage.dayNum > 0){
     getAjax(`http://localhost:5000/quotes/${dayNum}`,(serverQuote)=>{
+      localStorage.dayNum = dayNum;
       localStorage.quote = serverQuote.quote;
       localStorage.author = serverQuote.author;
       document.getElementById('quote').textContent = '“ '+serverQuote.quote+' ”';
       document.getElementById('author').textContent = serverQuote.author;
     })
-  }else{
+  }
+  else{
     window.onload = load;
   }
 

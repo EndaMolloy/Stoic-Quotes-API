@@ -80,7 +80,7 @@ body {
 
 #link {
   display: block;
-  /*visibility: hidden;*/
+  visibility: hidden;
   font-size: 0.75em;
   color: white;
   position: absolute;

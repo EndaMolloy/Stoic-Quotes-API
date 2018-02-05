@@ -20,14 +20,16 @@ app.get('/',(req,res)=> {
   res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-app.get('/quotes/:id', (req,res)=> {
-  const dayNum = req.params.id;
+app.get('/quotes/:dayNum', async (req,res)=> {
+
+  const dayNum = req.params.dayNum;
 
   Quote.find({},(err,quotes)=> {
     res.send(quotes[dayNum]);
   });
 
 })
+
 
 
 const port = process.env.PORT || 5000
