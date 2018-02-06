@@ -4,7 +4,7 @@
   const dayNum = 36;
 
   if(!localStorage.dayNum || dayNum - localStorage.dayNum > 0){
-    getAjax(`http://localhost:5000/quotes/${dayNum}`,(serverQuote)=>{
+    getAjax(`http://localhost:5000/api/quotes/${dayNum}`,(serverQuote)=>{
       localStorage.dayNum = dayNum;
       localStorage.quote = serverQuote.quote;
       localStorage.author = serverQuote.author;
