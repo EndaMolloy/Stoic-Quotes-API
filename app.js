@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const path = require('path');
-const Quote = require('./models/quotes');
+const Quote = require('./models/quotes')
 
 const app = express();
 
@@ -13,12 +12,6 @@ mongoose.connect(mongoDB);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//serve static files
-app.use(express.static(__dirname));
-
-app.get('/',(req,res)=> {
-  res.sendFile(path.join(__dirname+'/index.html'));
-});
 
 app.get('/api/quotes/:dayNum', async (req,res)=> {
   const dayNum = req.params.dayNum;
